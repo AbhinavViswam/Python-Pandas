@@ -27,8 +27,9 @@ s1 = pd.Series(["person1","person2"],name="Name")
 # print(s1)
 
 data={
-    "Animals":["Cat","Dog","goat","rabbit","Lion"],
-    "Eats Flesh":["yes","yes","no","no","yes"]
+    "Animals":["Cat","Dog","goat","rabbit","Lion","tiger"],
+    "Eats Flesh":["yes","yes","no","no","yes","yes"],
+    "Age":[1,None,3,4,5,None]
 }
 
 df2 = pd.DataFrame(data)
@@ -48,4 +49,31 @@ t4 = pd.read_csv("./data2.csv")
 t4.to_excel("exceldata.xlsx",sheet_name="animals",index=False)
 
 t5 = pd.read_excel("exceldata.xlsx")
-print(t5)
+# print(t5.info())
+
+# print(t5["Animals"].shape)
+
+#selecting only required series
+animalage = df2[["Age","Animals"]]
+# print(animalage)
+
+age3 = df2[df2["Age"]>3]
+# print(age3)
+
+age24 = df2[df2["Age"].isin([2,4])]
+age35 = df2[(df2["Age"] == 3) | (df2["Age"] ==5)]
+# print(age35)
+
+# not null
+notnull = df2[df2["Age"].notna()]
+# print(notnull)
+
+aName = df2.loc[df2["Age"]>3 ,"Animals"]
+# print(aName)
+
+# using index
+
+aName1 = df2.iloc[1:4]
+# print(aName1)
+
+print(df2.loc[df2["Eats Flesh"]=="yes","Animals"])
