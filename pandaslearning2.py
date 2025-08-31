@@ -84,5 +84,7 @@ def grade(score):
 df1["Grade"] = df1["Score"].apply(grade)
 df1["Name_Length"] = df1["Name"].apply(lambda x:len(x))
 # print(df1["Age"].fillna(1,inplace=True))
+
+# this cuts age into groups of 1 to 10 , 11 to 20 , and 21 to 60
 df1["Age_Group"] = pd.cut(df1["Age"],bins=[0,10,20,60],labels=["kid","young","Old"])
 print(df1)
